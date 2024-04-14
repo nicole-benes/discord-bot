@@ -1,0 +1,15 @@
+{
+  "name": "kanawa-mura",
+  "version": "1.0.0",
+  "description": "A dice roller for L5R 4E and other utilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nicole Benes",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "eslint": "^9.0.0"
+  }
+}
