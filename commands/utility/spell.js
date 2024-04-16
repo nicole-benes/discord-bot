@@ -13,6 +13,8 @@ module.exports = {
      async execute(interaction) {
           const searchName = interaction.options.getString('name');
 
+          console.log( interaction.user.username + ' attempted to look up: ' + searchName );
+
           let matched = false;
           let output = '';
 
@@ -21,11 +23,14 @@ module.exports = {
           fetch('https://www.kanawa-mura.com/api/spells?terms=' + searchName )
                .then(response => {
                     if (!response.ok) {
-                         throw new Error('Network response was not ok');
+                         console.log( ' \u2BA1 Error: ' + response );
+                         //throw new Error('Network response was not ok');
                     }
                     return response.json();
           })
           .then(data => {
+
+               console.log( ' \u2BA1 Response from Kanawa-Mura recieved' );
 
                if( data.length > 0 ) {
 
@@ -36,11 +41,11 @@ module.exports = {
 
                               output = '### ' + data[ key ].title ;
 
-                              if( 'source' in data[ key ] ) {
-                                   output += ' [' + data[ key ].source + ']\n';
+                              if( 'source' in data[ key ] && data[ key ].source.length > 0 ) {
+                                   output += ' [' + data[ key ].source + ']';
                               }
 
-                              output += '* **Ring/Mastery**: ' + data[ key ].trait + ' ' + data[ key ].rank;
+                              output += '\n* **Ring/Mastery**: ' + data[ key ].trait + ' ' + data[ key ].rank;
 
                               if( data[ key ].field_keywords.length > 0 ) {
                                    output += ' [' + data[ key ].field_keywords + ']';
@@ -83,12 +88,24 @@ module.exports = {
 
                if( matched ) {
                     interaction.editReply( output );
+
+                    console.log( ' \u2BA1 match found' );
+
                } else {
                     
+                    console.log( ' \u2BA1 No match found' );
+
                     output = '### No spell found, did you mean one of these:\n';
+                    let spells = '';
 
                     for ( const key in data ) {
-                         output += decodeHTMLEntities( data[ key ].title ) + ' [' + data[ key ].trait + ' ' + data[ key ].rank + ']\n';                      
+                         spells += decodeHTMLEntities( data[ key ].title ) + ' [' + data[ key ].trait + ' ' + data[ key ].rank + ']\n';                      
+                    }
+
+                    if( spells.length > 0 ) {
+                         output += spells;
+                    } else {
+                         output = '### No spell found and no suggestions found.\n';
                     }
 
                     interaction.editReply( output );

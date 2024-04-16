@@ -13,6 +13,8 @@ module.exports = {
 		const commandName = interaction.options.getString('command', true).toLowerCase();
 		const command = interaction.client.commands.get(commandName);
 
+		console.log( interaction.user.username + ' attempted to reload command: ' + commandName );
+
 		if (!command) {
 			return interaction.reply(`There is no command with name \`${commandName}\`!`);
 		}
