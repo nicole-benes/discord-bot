@@ -25,44 +25,57 @@ module.exports = {
                 output += '+**' + add + '**';
             }
 
-              output += ':   *Kept Dice*: [ ';
-  
-              for( let i = 0; i < keptRolls.length; i++ ) {
-  
-                  output += keptRolls[ i ];
-      
-                  if( i + 1 < keptRolls.length ) {
-                          output += ', ';
-                  }
-              }                  
-  
-              output += ' ]';
-          
-              if( unkeptRolls.length > 0 ) {
-                  output += ' *Unkept Dice*: [ ';
-      
-                  for( let i = 0; i < unkeptRolls.length; i++ ) {
-      
-                          output += unkeptRolls[ i ];
-      
-                          if( i + 1 < unkeptRolls.length ) {
-                              output += ', ';
-                          }
-                  }          
-      
-                  output += ' ]';
-      
-              }
+            if( emphasis ) {
+                output += ' [Emphasis]';
+            }
 
-              output += '   Total: ***' + ( total + add ) + '*** (*' + total + ' + ' + add + '*)';
+            if( expanded ) {
+                output += ' [Exploding on 9 & 10]';
+            }
+
+            output += '   \u2192   *Kept Dice*: [ ';
   
-              await interaction.reply( output );               
+            for( let i = 0; i < keptRolls.length; i++ ) {
+  
+                output += keptRolls[ i ];
+      
+                if( i + 1 < keptRolls.length ) {
+                    output += ', ';
+                }
+            }                  
+  
+            output += ' ]';
+          
+            if( unkeptRolls.length > 0 ) {
+                output += ' *Unkept Dice*: [ ';
+      
+                for( let i = 0; i < unkeptRolls.length; i++ ) {
+      
+                    output += unkeptRolls[ i ];
+      
+                    if( i + 1 < unkeptRolls.length ) {
+                        output += ', ';
+                    }
+                }          
+      
+                output += ' ]';
+      
+            }
+
+            output += '   \u2192   Total: ***' + ( total + add ) + '***';
+            
+            if( add > 0 ) {
+                output += ' (*' + total + ' + ' + add + '*)';
+            }
+
+            await interaction.reply( output );               
   
           } else {
   
             await interaction.deferReply();
 
             let simulatedTotal = 0;
+            let rolls = [];
 
             for( let i = 0; i < sims; i++ ) {
 
@@ -70,15 +83,25 @@ module.exports = {
 
                 simulatedTotal += ( total + add );
 
+                rolls.push( total + add );
+
             }
 
             let output = 'Rolled **' + roll + '**k**' + keep + '**';
-              
+            
             if( add > 0 ) {
                 output += '+**' + add + '**';
             }
 
-            await interaction.editReply( output + ' \u00D7 *' + sims + '*.  Average result: **' + ( simulatedTotal / sims ) + '**' );
+            if( emphasis ) {
+                output += ' [Emphasis]';
+            }
+
+            if( expanded ) {
+                output += ' [Exploding on 9 & 10]';
+            }
+
+            await interaction.editReply( output + ' \u00D7 *' + sims + '*   \u2192   Mean: **' + ( simulatedTotal / sims ) + '**  Median: **' + calculateMedian( rolls ) + '**  SD: **' + calculateStandardDeviation( rolls ) + '**' );
         }
     }
 };
@@ -157,3 +180,27 @@ function rollDie ( emphasis = false, expanded = false ) {
      return randomNumber;
  }
  
+
+
+ function calculateMedian(numbers) {
+    const sortedNumbers = numbers.slice().sort((a, b) => a - b);
+    const length = sortedNumbers.length;
+  
+    if (length % 2 === 0) {
+      const mid = length / 2;
+      return (sortedNumbers[mid - 1] + sortedNumbers[mid]) / 2;
+    } else {
+      const mid = Math.floor(length / 2);
+      return sortedNumbers[mid];
+    }
+  }
+
+
+
+  function calculateStandardDeviation(numbers) {
+    const mean = numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
+    const squaredDifferencesSum = numbers.reduce((sum, num) => sum + Math.pow(num - mean, 2), 0);
+    const variance = squaredDifferencesSum / numbers.length;
+    const standardDeviation = Math.sqrt(variance);
+    return standardDeviation;
+  }
