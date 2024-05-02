@@ -27,7 +27,7 @@ module.exports = {
 
           // We're always going to draw two cards to start at least 
           hand.draw();
-          hand.draw();2
+          hand.draw();
 
           // Render the finalized image of our current hand
           let renderedCards = new AttachmentBuilder( await hand.renderHand(), { name: 'cards.png' } );
