@@ -141,7 +141,9 @@ function parseInput( input ) {
      const keptRolls = Math.max( rolls );
      const unkeptRolls = rolls.slice( keep, keep.length );
  
-     return { keptRolls, unkeptRolls, 0 };      
+     let botch = false;
+
+     return { keptRolls, unkeptRolls, botch };      
  }
  
  
