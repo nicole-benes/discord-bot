@@ -14,7 +14,7 @@ module.exports = {
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
   
-          const { X: number, Y: type, Q: add, Z: sims } = parseInput( interaction.options.getString( 'options' ) );
+          const { roll: number, type: type, add: add, sims: sims } = parseInput( interaction.options.getString( 'options' ) );
 
           if( sims === null ) {
   
