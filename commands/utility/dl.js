@@ -13,7 +13,6 @@ module.exports = {
                     .setRequired( true )
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
-  
           const { roll: number, type: type, add: add, sims: sims } = parseInput( interaction.options.getString( 'options' ) );
 
           if( sims === null ) {
@@ -112,13 +111,13 @@ function parseInput( input ) {
     const match = input.match(regex);
 
     if (match) {
-        const X = parseInt(match[1]);
-        const Y = parseInt(match[2]);
-        const Q = match[3] ? parseInt(match[3]) : null;
-        const Z = match[4] ? parseInt(match[4]) : null;
+        const number = parseInt(match[1]);
+        const type = parseInt(match[2]);
+        const add = match[3] ? parseInt(match[3]) : null;
+        const sims = match[4] ? parseInt(match[4]) : null;
 
         if (!isNaN(X) && !isNaN(Y) && (Q === null || !isNaN(Q)) && (Z === null || !isNaN(Z))) {
-            return { X, Y, Q, Z };
+            return { number, type, add, sims };
         } else {
             console.log( 'X, Y, Q, and Z must be numeric.' );
         }
