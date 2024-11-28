@@ -14,7 +14,8 @@ module.exports = {
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
   
-          // interaction.options.getString( 'd' )
-          await interaction.reply( 'ddsad' );   
-     }
+          const Options = interaction.options.getString( 'options' );
+
+          await interaction.reply( Options );   
+     },
 }
