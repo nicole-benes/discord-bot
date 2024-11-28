@@ -5,11 +5,11 @@ module.exports = {
      cooldown: 5,
      category: 'utility',
      data: new SlashCommandBuilder()
-		.setName('deadlands')
+		.setName('d')
 		.setDescription('Roll a number of exploding dice and keep the best.')
 		.addStringOption(option =>
 			option
-				.setName( 'deadlands' )
+				.setName( 'd' )
                     .setRequired( true )
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
