@@ -14,8 +14,7 @@ module.exports = {
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
           const { number: roll, type: type, add: add, sims: sims } = parseInput( interaction.options.getString( 'options' ) );
-console.log( parseInput( interaction.options.getString( 'options' ) ) );
-          console.log( 'Roll: ' + roll + '     type: ' + type );
+
           if( sims === null ) {
   
               const { result: bestRoll, unkeptRolls: unkeptRoll, botched: botch } = rollDice( roll, type );
@@ -138,8 +137,8 @@ function parseInput( input ) {
  
      rolls.sort((a, b) => b - a);
  
-     const keptRolls = Math.max( rolls );
-     const unkeptRolls = rolls.slice( keep, keep.length );
+     const keptRolls = rolls.slice( 0, 1 );
+     const unkeptRolls = rolls.slice( 1, keep.length );
  
      let botch = false;
 
