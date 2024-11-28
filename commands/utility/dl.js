@@ -138,7 +138,7 @@ function parseInput( input ) {
      rolls.sort((a, b) => b - a);
  
      const keptRolls = rolls.slice( 0, 1 );
-     const unkeptRolls = rolls.slice( 1, keep.length );
+     const unkeptRolls = rolls.slice( 1, rolls.length );
  
      let botch = false;
 
