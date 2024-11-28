@@ -40,7 +40,7 @@ let botched = false;
 
                output += ' ]';
             } else {
-               output += '   \u2192   *Best Result*: [ ' + keptRolls + ' ]';
+               output += '   \u2192   *Best Result*: [ ' + result + ' ]';
             
                if( unkeptRolls.length > 0 ) {
                    output += ' *Other Results*: [ ';
