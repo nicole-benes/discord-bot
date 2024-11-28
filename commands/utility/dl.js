@@ -17,7 +17,7 @@ module.exports = {
 
           if( sims === null ) {
   
-              const { result: bestRoll, unkeptRolls: unkeptRoll, botched: botch } = rollDice( roll, type );
+              const { result: bestRoll, unkeptRolls: unkeptRolls, botched: botch } = rollDice( roll, type );
   
               let output = 'Rolled **' + roll + '**d**' + type + '**';
               
