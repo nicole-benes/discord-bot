@@ -128,7 +128,7 @@ function parseInput( input ) {
 }
   
  
- function rollAndKeep( rolled, type ) {
+ function rollDice( rolled, type ) {
  
      const rolls = [];
  
