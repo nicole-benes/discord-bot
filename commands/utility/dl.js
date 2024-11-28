@@ -116,7 +116,7 @@ function parseInput( input ) {
         const add = match[3] ? parseInt(match[3]) : null;
         const sims = match[4] ? parseInt(match[4]) : null;
 
-        if (!isNaN(X) && !isNaN(Y) && (Q === null || !isNaN(Q)) && (Z === null || !isNaN(Z))) {
+        if (!isNaN( number ) && !isNaN( type ) && ( add === null || !isNaN( add )) && ( sims === null || !isNaN( sims ))) {
             return { number, type, add, sims };
         } else {
             console.log( 'X, Y, Q, and Z must be numeric.' );
