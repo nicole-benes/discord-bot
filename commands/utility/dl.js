@@ -24,7 +24,7 @@ module.exports = {
             if( add > 0 ) {
                 output += '+**' + add + '**';
             }
-
+let botched = false;
             if( botched ) {
                output += '\u2192   *You botched:';
 
