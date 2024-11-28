@@ -5,7 +5,7 @@ module.exports = {
      cooldown: 5,
      category: 'utility',
      data: new SlashCommandBuilder()
-		.setName('d')
+		.setName('dl')
 		.setDescription('Roll a number of exploding dice and keep the best.')
 		.addStringOption(option =>
 			option
