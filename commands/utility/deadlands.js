@@ -13,8 +13,10 @@ module.exports = {
                     .setRequired( true )
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
+  
+          await interaction.reply( interaction.options.getString( 'deadlands' ) );   
           
-          const { X: number, Y: type, Q: add, Z: sims } = parseInput( interaction.options.getString( 'deadlands' ) );
+//          const { X: number, Y: type, Q: add, Z: sims } = parseInput( interaction.options.getString( 'deadlands' ) );
 /*
           if( sims === null ) {
   
