@@ -13,7 +13,7 @@ module.exports = {
                     .setRequired( true )
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
-          const { roll: number, type: type, add: add, sims: sims } = parseInput( interaction.options.getString( 'options' ) );
+          const { number: roll, type: type, add: add, sims: sims } = parseInput( interaction.options.getString( 'options' ) );
 console.log( parseInput( interaction.options.getString( 'options' ) ) );
           console.log( 'Roll: ' + roll + '     type: ' + type );
           if( sims === null ) {
