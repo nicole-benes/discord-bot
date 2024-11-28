@@ -14,7 +14,8 @@ module.exports = {
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
           const { roll: number, type: type, add: add, sims: sims } = parseInput( interaction.options.getString( 'options' ) );
-console.log( 'Roll: ' + roll + '     type: ' + type );
+console.log( parseInput( interaction.options.getString( 'options' ) ) );
+          console.log( 'Roll: ' + roll + '     type: ' + type );
           if( sims === null ) {
   
               const { result: bestRoll, unkeptRolls: unkeptRoll, botched: botch } = rollDice( roll, type );
@@ -115,9 +116,8 @@ function parseInput( input ) {
         const type = parseInt(match[2]);
         const add = match[3] ? parseInt(match[3]) : null;
         const sims = match[4] ? parseInt(match[4]) : null;
-console.log ( number + ' ' + type );
+
         if (!isNaN( number ) && !isNaN( type ) && ( add === null || !isNaN( add )) && ( sims === null || !isNaN( sims ))) {
-          console.log ( number );
             return { number, type, add, sims };
         } else {
             console.log( 'X, Y, Q, and Z must be numeric.' );
