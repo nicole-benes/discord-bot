@@ -40,7 +40,7 @@ let botched = false;
 
                output += ' ]';
             } else {
-               output += '   \u2192   *Best Result*: [ ' + result + ' ]';
+               output += '   \u2192   *Best Result*: [ ' + bestRoll + ' ]';
             
                if( unkeptRolls.length > 0 ) {
                    output += ' *Other Results*: [ ';
@@ -58,10 +58,10 @@ let botched = false;
          
                }
    
-               output += '   \u2192   Best: ***' + ( result + add ) + '***';
+               output += '   \u2192   Best: ***' + ( bestRoll + add ) + '***';
                
                if( add > 0 ) {
-                   output += ' (*' + result + ' + ' + add + '*)';
+                   output += ' (*' + bestRoll + ' + ' + add + '*)';
                }
    
             }
