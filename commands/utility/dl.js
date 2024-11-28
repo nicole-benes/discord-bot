@@ -117,6 +117,7 @@ function parseInput( input ) {
         const sims = match[4] ? parseInt(match[4]) : null;
 console.log ( number + ' ' + type );
         if (!isNaN( number ) && !isNaN( type ) && ( add === null || !isNaN( add )) && ( sims === null || !isNaN( sims ))) {
+          console.log ('dsdfssd' );
             return { number, type, add, sims };
         } else {
             console.log( 'X, Y, Q, and Z must be numeric.' );
