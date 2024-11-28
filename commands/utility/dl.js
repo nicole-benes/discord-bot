@@ -14,7 +14,7 @@ module.exports = {
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
           const { roll: number, type: type, add: add, sims: sims } = parseInput( interaction.options.getString( 'options' ) );
-
+console.log( 'Roll: ' + roll + '     type: ' + type );S
           if( sims === null ) {
   
               const { result: bestRoll, unkeptRolls: unkeptRoll, botched: botch } = rollDice( roll, type );
