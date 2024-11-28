@@ -15,7 +15,7 @@ module.exports = {
      async execute(interaction) {
           
           const { X: number, Y: type, Q: add, Z: sims } = parseInput( interaction.options.getString( 'deadlands' ) );
-
+/*
           if( sims === null ) {
   
               const { result: bestRoll, unkeptRolls: unkeptRoll, botched: botch } = rollDice( roll, type );
@@ -102,9 +102,10 @@ module.exports = {
 
             await interaction.editReply( output + ' \u00D7 *' + sims + '*   \u2192   Mean: **' + ( simulatedTotal / sims ) + '**  Median: **' + calculateMedian( rolls ) + '**  SD: **' + calculateStandardDeviation( rolls ) + '**' );
 */
-          }
+//          }
+
     }
-};
+}
 
 
 function parseInput( input ) {
