@@ -9,7 +9,7 @@ module.exports = {
 		.setDescription('Roll a number of exploding dice and keep the best.')
 		.addStringOption(option =>
 			option
-				.setName( 'd' )
+				.setName( 'options' )
                     .setRequired( true )
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
