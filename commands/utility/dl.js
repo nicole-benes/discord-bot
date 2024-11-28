@@ -14,10 +14,8 @@ module.exports = {
 				.setDescription( 'TBD' ) ),
      async execute(interaction) {
   
-          await interaction.reply( interaction.options.getString( 'options' ) );   
-          
-//          const { X: number, Y: type, Q: add, Z: sims } = parseInput( interaction.options.getString( 'deadlands' ) );
-/*
+          const { X: number, Y: type, Q: add, Z: sims } = parseInput( interaction.options.getString( 'options' ) );
+
           if( sims === null ) {
   
               const { result: bestRoll, unkeptRolls: unkeptRoll, botched: botch } = rollDice( roll, type );
@@ -104,8 +102,7 @@ module.exports = {
 
             await interaction.editReply( output + ' \u00D7 *' + sims + '*   \u2192   Mean: **' + ( simulatedTotal / sims ) + '**  Median: **' + calculateMedian( rolls ) + '**  SD: **' + calculateStandardDeviation( rolls ) + '**' );
 */
-//          }
-
+         }
     }
 };
 
