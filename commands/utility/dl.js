@@ -24,7 +24,9 @@ module.exports = {
             if( add > 0 ) {
                 output += '+**' + add + '**';
             }
-let botched = false;
+            
+            let botched = false;
+
             if( botched ) {
                output += '\u2192   *You botched:';
 
@@ -57,13 +59,6 @@ let botched = false;
                    output += ' ]';
          
                }
-   
-               output += '   \u2192   Best: ***' + ( bestRoll + add ) + '***';
-               
-               if( add > 0 ) {
-                   output += ' (*' + bestRoll + ' + ' + add + '*)';
-               }
-   
             }
 
             await interaction.reply( output );               
@@ -134,9 +129,12 @@ function parseInput( input ) {
      for (let i = 0; i < rolled; i++) {    
          rolls.push( rollDie( type ) );
      }
- 
+
      rolls.sort((a, b) => b - a);
- 
+
+     console.log( rolls );
+
+
      const result = rolls.slice( 0, 1 );
      const unkeptRolls = rolls.slice( 1, rolls.length );
  
