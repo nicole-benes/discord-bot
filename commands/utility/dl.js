@@ -41,9 +41,16 @@ module.exports = {
                }
 
                output += ' ]';
+               
             } else {
-               output += '   \u2192   *Best Result*: [ ' + bestRoll + ' ]';
-            
+
+               if( add > 0 ) {
+                    output += '   \u2192   *Best Result*: [ ' + bestRoll + add + ' (' + bestRoll + ' + ' + add + ') ]';
+               
+               } else {
+                    output += '   \u2192   *Best Result*: [ ' + bestRoll + ' ]';
+               }
+
                if( unkeptRolls.length > 0 ) {
                    output += ' *Other Results*: [ ';
          
