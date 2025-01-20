@@ -192,11 +192,13 @@ class standardDeck {
 
      drawCard() {
           if( this.deck.length > 0 ) {
-               
+               const { voiceChannelId } = require('./config.json');
+               const { rpGuildId } = require('./config.json');
+
                // Set up our connection to our voice chat
                const connection = joinVoiceChannel({
-                    channelId: ,
-                    guildId: ,
+                    channelId: voiceChannelId,
+                    guildId: rpGuildId,
                     adapterCreator: channel.guild.voiceAdapterCreator,
                });
 
