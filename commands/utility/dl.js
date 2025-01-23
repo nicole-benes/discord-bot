@@ -139,9 +139,6 @@ function parseInput( input ) {
 
      rolls.sort((a, b) => b - a);
 
-     console.log( rolls );
-
-
      const result = rolls.slice( 0, 1 );
      const unkeptRolls = rolls.slice( 1, rolls.length );
  
