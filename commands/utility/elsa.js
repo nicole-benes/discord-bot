@@ -1,18 +1,22 @@
 const { EmbedBuilder, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, ComponentType } = require('discord.js');
+
+// Include the voice library
+const { getVoiceConnection , createAudioPlayer, createAudioResource, AudioPlayerStatus, entersState, VoiceConnectionStatus, StreamType } = require('@discordjs/voice');
+
 const crypto = require('crypto');
 const Canvas = require('@napi-rs/canvas');
-
-// Include the audio player
-const { createAudioPlayer } = require('@discordjs/voice');
-
+const { createReadStream } = require('node:fs');
+const { join } = require('node:path');
 
 module.exports = {
      cooldown: 5,
      category: 'utility',
      data: new SlashCommandBuilder()
 		.setName( 'elsa' )
-		.setDescription( 'Elsa loves drawing jokers.' ),
+		.setDescription( 'Deal some cards from a fresh deck.' ),
      async execute( interaction ) {
+          // We'll need the member later
+          const { member } = interaction;
 
           const deal = new ButtonBuilder()
 			.setCustomId( 'deal' )
@@ -90,8 +94,36 @@ class pokerHand {
           this.hand = [];
      }
 
-     draw() {
-          this.hand.push( this.deck.drawCard() );
+     draw( member ) {
+
+          // Draw a card
+          let card = this.deck.drawCard();
+
+          // Did we draw a joker?
+          if( card.suit == 'joker' ) {
+     
+               // Load our configuration variables
+               const { voiceChannelId } = require('./../../config.json');
+               const { rpGuildId } = require('./../../config.json');
+
+               // Get the already connected voice connection
+               const connection = getVoiceConnection( rpGuildId );
+
+               // Create an audio player
+               const player = createAudioPlayer();               
+
+               // Load the horn
+               const resource = createAudioResource( '/home/nmbenes/audio/the-price-is-right-losing-horn.mp3' );
+
+               // Join the voice channel
+               connection.subscribe( player );
+
+               // Play the sound file
+               player.play( resource );  
+          }
+
+          // Add this card to our hand
+          this.hand.push( card );
      }
 
      length() {
@@ -192,37 +224,9 @@ class standardDeck {
 
      drawCard() {
           if( this.deck.length > 0 ) {
-               const { voiceChannelId } = require('./config.json');
-               const { rpGuildId } = require('./config.json');
-
-               // Set up our connection to our voice chat
-               const connection = joinVoiceChannel({
-                    channelId: voiceChannelId,
-                    guildId: rpGuildId,
-                    adapterCreator: channel.guild.voiceAdapterCreator,
-               });
 
                // We need to subtract one because the function gives a range starting from 1
-               const draw = this.getRandomNumber( 0, this.deck.length ) - 1;
-
-               // Create an audio player
-               const player = createAudioPlayer();
-
-               // Create the audio resource
-               const resource = createAudioResource( './audio/the-price-is-right-losing-horn.mp3' );
-
-               // Play the audio file in our voice channel
-               connection.subscribe(player);
-
-               //player.play( resource );
-
-               console.log( draw );
-
-               // Destroy the audio player
-               player.stop();
-
-               // Remove the audio connection
-               connection.destroy();
+               const draw = this.getRandomNumber( 0, this.deck.length ) - 1;             
 
                // Return the card we drew
                return this.deck.splice( draw, 1 )[ 0 ];
