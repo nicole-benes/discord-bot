@@ -45,10 +45,10 @@ module.exports = {
             } else {
 
                if( add > 0 ) {
-                    output += '   \u2192   *Best Result*: [ ' + bestRoll + add + ' (' + bestRoll + ' + ' + add + ') ]';
+                    output += '   \u2192   *Best Result*: [ **' + ( +bestRoll + +add ) + '** (' + bestRoll + ' + ' + add + ') ]';
                
                } else {
-                    output += '   \u2192   *Best Result*: [ ' + bestRoll + ' ]';
+                    output += '   \u2192   *Best Result*: [ **' + bestRoll + '** ]';
                }
 
                if( unkeptRolls.length > 0 ) {
